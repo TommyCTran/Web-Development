@@ -3,18 +3,15 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-* {
-    box-sizing: border-box;
-}
 
-body {
-    background-color: lightblue;
+@media (min-width: 400px) {
+  html { background: red; }
 }
-
-@media screen and (min-width: 480px) {
-    body {
-        background-color: lightgreen;
-    }
+@media (min-width: 600px) {
+  html { background: green; }
+}
+@media (min-width: 800px) {
+  html { background: blue; }
 }
 </style>
 </head>
