@@ -1,56 +1,53 @@
 <html ng-app="myApp">
 <head>
-	<title>Angular Setup</title>
+	<title>Meeting Room</title>
 	<script type="text/javascript" src="../libs/angular.js"></script>
-	<script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="../js/angular-route.js"></script>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.js"></script>
+	<script type="text/javascript" src="../js/jquery.timepicker.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.js"></script>
+    <script type="text/javascript" src="../js/moment.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <link rel="stylesheet" href="../css/jquery-ui.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/jquery.timepicker.css">   
+    <link rel="stylesheet" href="../css/style.css">   
 </head>
-
 <body ng-controller="MainController">
-	<p><b>Module 1 - 1</b></p>
-	<p>{{ message }}</p>
-	<p>{{ sayHello('Tommy') }}</p>
-	
-	<p><b>Module 1 - 2</b></p>
-	<p><input type="text" ng-model="itemIndex"><input type="button" value="Get Item" ng-click="getItem()"></p>
-	<p>{{ currentItem }}</p>
-	
-	<p><b>Module 1 - 3</b></p>
-	<p>Standard bracket expression:</p>
-	<p>{{ randomValue }}</p>
-	
-	<p>One time bracket expression:</p>
-	<p>{{ ::randomValue }}</p>
-	
-	<p>Array time bracket expression:</p>
-	<p>{{ names[1] }}</p>
-	
-	<p>Operation bracket expression:</p>
-	<p>{{ qty * cost }}</p>
-	
-	<p>Evaluation bracket expression:</p>
-	<p>{{ randomValue > 500000 }}</p>
-	
-	<p>Evaluation bracket expression:</p>
-	<p>{{ randomValue > 500000 }}</p>
-	
-	<p>Enter width: <input type="text" ng-model="pWidth"></p>
-	<p style="background:#ff0000;width:{{pWidth}}px">
-		This is a dynamic paragraph.
-	</p>
-	
-	<p><b>Module 1 - 4</b></p>
-	<div ng-controller="ParentController">
-	
-		<input type="text" ng-model="model.name">
-		<p>This is the parent: {{ model.name }}</p>
-		
-		<div ng-controller="ChildController">
-		
-			<input type="text" ng-model="model.name">
-			<p>This is the child: {{ model.name }}</p>
-			
-		</div>
-		
-	</div>
+<div class="row">
+    <div class="col-sm-1 col-sm-offset-11">
+        <div id="tooltip">
+            <a class="glyphicon glyphicon-question-sign tool" ng-click="tooltip()" href=""></a>
+            <div id="tool-hide">
+                <div id="grey"><b>Pending</b></div>
+                <div id="green"><b>Ongoing</b></div>
+                <div id="blue"><b>Done</b></div>
+            </div>                         
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+        <div id="content">
+            <div id="meeting-container">
+                <button class="meetings" ng-repeat="meeting in list" ng-class="{'first': $first, 'last': $last}" id="{{meeting.name}}">
+                    <div class="row">
+                        <div class="col-sm-3">
+                        </div>
+                        <div class="col-sm-6">
+                            <b>{{meeting.name}}</b>
+                            <br>{{meeting.start + " - " + meeting.end}} 
+                        </div>
+                        <div class="col-sm-3">
+                            <a ng-show={{meeting.food}} class="glyphicon glyphicon-apple apple"  href=""></a> 
+                        </div>
+                    </div>
+                </button>
+            </div>
+            <div ng-view></div>
+        </div>  
+    </div> 
+</div>
 </body>
 </html>
